@@ -6,13 +6,14 @@ import com.gasparbarancelli.mysql.entity.Tag;
 import com.gasparbarancelli.mysql.repository.AuthorRepository;
 import com.gasparbarancelli.mysql.repository.PostRepository;
 import com.gasparbarancelli.mysql.repository.TagRepository;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Repository
-public class Demo {
+public class Demo implements ApplicationRunner {
 
     private final TagRepository tagRepository;
     private final AuthorRepository authorRepository;
@@ -24,8 +25,8 @@ public class Demo {
         this.postRepository = postRepository;
     }
 
-    @PostConstruct
-    public void demo() {
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
         var post = Post.of(
                 "Banco de dados MySQL com Spring Boot",
                 "O MySQL é um sistema de gerenciamento de banco de dados...",
